@@ -1,0 +1,27 @@
+{
+  "name": "kaibabot",
+  "version": "1.0.0",
+  "description": "Discord bot to generate random Seto Kaiba quotes.",
+  "main": "kaibabot.js",
+  "scripts": {
+    "test": "node kaibabot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eric-d-gordon/kaibabot.git"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "kaiba"
+  ],
+  "author": "Eric Gordon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eric-d-gordon/kaibabot/issues"
+  },
+  "homepage": "https://github.com/eric-d-gordon/kaibabot#readme",
+  "dependencies": {
+    "discord.js": "^12.5.3"
+  }
+}
