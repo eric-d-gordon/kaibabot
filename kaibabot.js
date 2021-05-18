@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const quotes = require('./quotes.json');
 const bot = new Discord.Client();
 const prefix = '!';
 
