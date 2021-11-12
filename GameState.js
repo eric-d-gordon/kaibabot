@@ -29,13 +29,13 @@ class GameState {
 
     duelWinBanner(winner) {
         return winner.name + ' has won the Duel!\n' +
-        '------------' + `${this.leftPlayer.name} (${this.leftPlayer.gameWins}) - ${this.rightPlayer.name} (${this.rightPlayer.gameWins}) ` +
+        '------------' + ` ${this.leftPlayer.name} (${this.leftPlayer.gameWins}) - ${this.rightPlayer.name} (${this.rightPlayer.gameWins}) ` +
         '------------\n';
     }
 
     gameWinBanner(winner) {
         return winner.name + ' has won the Game!\n' +
-        '------------' + `${this.leftPlayer.name} (${this.leftPlayer.gameWins}) - ${this.rightPlayer.name} (${this.rightPlayer.gameWins}) ` +
+        '------------' + ` ${this.leftPlayer.name} (${this.leftPlayer.gameWins}) - ${this.rightPlayer.name} (${this.rightPlayer.gameWins}) ` +
         '------------\n';
     }
 
