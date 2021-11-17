@@ -72,7 +72,7 @@ function creatNewGame(args) {
 }
 
 function printNewGameHeader() {
-    return '------------' + gameState.gameType.toString() + '------------' + '\n';
+    return 'Starting a new ' + gameState.gameType.toString() + '\n';
 }
 
 function loseLifePoints(args) {

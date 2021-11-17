@@ -1,4 +1,5 @@
 const Player = require('./Player.js');
+const DIVIDER = '------------------------------';
 
 class GameState {
 
@@ -10,8 +11,10 @@ class GameState {
 
     toString() {
         if (this.leftPlayer.lifePoints <= 0) {
+            this.leftPlayer.lifePoints = 0;
             return this.declareDuelWinner(this.rightPlayer);
         } else if (this.rightPlayer.lifePoints <= 0) {
+            this.rightPlayer.lifePoints = 0;
             return this.declareDuelWinner(this.leftPlayer);
         }
 
@@ -19,24 +22,30 @@ class GameState {
     }
 
     scoreBoard() {
-        return this.leftPlayer.toString() + '\n' + this.rightPlayer.toString();
+        let board = '```\n' + DIVIDER + '\n';
+        board += this.leftPlayer.getNameLeftAlign();
+        board += this.leftPlayer.getLifePointsPadded();
+        board += '  ';
+        board += this.rightPlayer.getLifePointsPadded();
+        board += this.rightPlayer.getNameRightAlign() + '\n';
+        board += `[${this.leftPlayer.gameWins}/${this.gameType.winThreshold}]`;
+        board += '                    ';
+        board += `[${this.rightPlayer.gameWins}/${this.gameType.winThreshold}]\n`;
+        board += DIVIDER + '```';
+        return board;
     }
 
     startNewDuel() {
-        this.rightPlayer.resetLifePoinst();
-        this.leftPlayer.resetLifePoinst();
+        this.rightPlayer.resetLifePoints();
+        this.leftPlayer.resetLifePoints();
     }
 
     duelWinBanner(winner) {
-        return winner.name + ' has won the Duel!\n' +
-        '------------' + ` ${this.leftPlayer.name} (${this.leftPlayer.gameWins}) - ${this.rightPlayer.name} (${this.rightPlayer.gameWins}) ` +
-        '------------\n';
+        return winner.name + ` has won Game ${this.leftPlayer.gameWins + this.rightPlayer.gameWins}!\n`;
     }
 
     gameWinBanner(winner) {
-        return winner.name + ' has won the Game!\n' +
-        '------------' + ` ${this.leftPlayer.name} (${this.leftPlayer.gameWins}) - ${this.rightPlayer.name} (${this.rightPlayer.gameWins}) ` +
-        '------------\n';
+        return winner.name + ' has won the Match!\n';
     }
 
     declareDuelWinner(winner) {
@@ -45,7 +54,7 @@ class GameState {
             this.startNewDuel();
             return this.duelWinBanner(winner) + this.scoreBoard();
         } else {
-            return this.gameWinBanner(winner);
+            return this.gameWinBanner(winner) + this.scoreBoard();
         }
     }
 }
