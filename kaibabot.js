@@ -5,6 +5,8 @@ const Discord = require('discord.js');
 const quotes = require('./quotes.json');
 const bot = new Discord.Client();
 const prefix = '!';
+const kaibaGif = 'https://tenor.com/view/kaiba-yugioh-gif-11477967';
+const obliterateGif = 'https://tenor.com/view/exodia-yu-gi-oh-anime-summon-gif-17959838';
 
 var gameState = new GameState('Player1', 'Player2', new Single());
 
@@ -19,7 +21,7 @@ bot.on('message', async message => {
         await handleLifePointsModule(message);
     }
     if (message.content == `${prefix}seto`) {
-        await sendBackDiscordMessage(message, 'Kaiba');
+        await sendBackDiscordMessage(message, `Kaiba\n${kaibaGif}`);
     } else if (message.content == `${prefix}insult`) {
         await sendBackDiscordMessage(message, generateRandomArrayItem(quotes.kaibaQuotes));
     }
@@ -54,6 +56,8 @@ function handleLifePointsCommand(args) {
         return loseLifePoints(args);
     } else if (command == 'gain' && args.length == 4) {
         return gainLifePoints(args);
+    } else if (command == 'obliterate') {
+        return obliterate(args);
     }
     return gameState.toString();
 }
@@ -95,4 +99,14 @@ function gainLifePoints(args) {
         gameState.rightPlayer.gainLife(amount);
     }
     return gameState.toString();
+}
+
+function obliterate(args)  {
+    const player = args[2];
+    if (gameState.leftPlayer.name == player) {
+        gameState.leftPlayer.loseLife(999999);
+    } else if (gameState.rightPlayer.name == player) {
+        gameState.rightPlayer.loseLife(999999);
+    }
+    return `${gameState.toString()}\n${obliterateGif}`;
 }
